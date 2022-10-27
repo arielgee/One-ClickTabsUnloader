@@ -1,0 +1,35 @@
+{
+	"manifest_version": 2,
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "one-click-tabs-unloader@webExtension.arielg.il",
+			"strict_min_version": "106.0"
+		}
+	},
+	"name": "One-Click Tabs Unloader",
+	"version": "1.0",
+	"description": "Unload all discardable tabs in one-click.",
+	"author": "arielg",
+	"permissions": [
+		"tabs",
+		"notifications"
+	],
+	"icons": {
+		"16": "/icon.svg",
+		"32": "/icon.svg",
+		"48": "/icon.svg"
+	},
+	// ++ MV3 "action": {
+	"browser_action": {
+		"browser_style": true,
+		"default_title": "Unload All Discardable Tabs",
+		"default_icon": {
+			"16": "/icon.svg",
+			"32": "/icon.svg",
+			"48": "/icon.svg"
+		}
+	},
+	"background": {
+		"scripts": [ "/background.js" ]
+	}
+}
