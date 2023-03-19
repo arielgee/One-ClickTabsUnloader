@@ -15,7 +15,7 @@ browser.browserAction.onClicked.addListener(() => {
 				type: "basic",
 				title: "One-Click Tabs Unloader",
 				eventTime: Date.now(),
-				message: `Unloaded Tabs: ${tabIds.length}`,
+				message: tabIds.length === 0 ? "Nothing to unload" : `${tabIds.length} tab${(tabIds.length>1 ? "s" : "")} unloaded`,
 			});
 			setTimeout(() => browser.notifications.clear(notifyId), 5000);
 
