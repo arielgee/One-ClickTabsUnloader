@@ -1,7 +1,6 @@
 "use strict";
 
-// ++ MV3 browser.action.onClicked.addListener(() => {
-browser.browserAction.onClicked.addListener(() => {
+browser.action.onClicked.addListener(() => {
 
 	browser.tabs.query({ active: false, discarded: false }).then(tabs => {		// 'autoDiscardable' is not implemented
 

@@ -1,5 +1,5 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "one-click-tabs-unloader@webExtension.arielg.il",
@@ -19,9 +19,7 @@
 		"32": "/icon.svg",
 		"48": "/icon.svg"
 	},
-	// ++ MV3 "action": {
-	"browser_action": {
-		"browser_style": true,
+	"action": {
 		"default_title": "Unload All Discardable Tabs",
 		"default_icon": {
 			"16": "/icon.svg",
