@@ -1,0 +1,32 @@
+:root {
+	--background-color: rgb(60, 60, 62);	/* #505050;*/
+	--text-color: rgb(240, 240, 240);
+	--border-color: rgb(102, 102, 107);
+}
+
+body {
+	min-width: 150px;
+	margin: 3px;
+	padding: 8px;
+	border: 1px solid var(--border-color);
+	background-color: var(--background-color);
+	color: var(--text-color);
+	font-family: Tahoma, Sans;
+	font-size: 13.2px;
+	font-weight: normal;
+	user-select: none;
+}
+
+.header {
+	font-family: Calibri, Tahoma, Sans;
+	font-size: 18px;
+	text-align: center;
+	padding: 0 13px 11px;
+}
+
+.info {
+	margin: 5px 3px;
+}
+.info:last-child {
+	margin-bottom: 0;
+}

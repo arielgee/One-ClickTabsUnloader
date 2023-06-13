@@ -1,23 +1,29 @@
 "use strict";
 
-browser.action.onClicked.addListener(() => {
+browser.action.onClicked.addListener((_, OnClickData) => {
 
-	browser.tabs.query({ active: false, discarded: false }).then(tabs => {		// 'autoDiscardable' is not implemented
+	if(OnClickData.modifiers.includes("Shift")) {
 
-		let tabIds = tabs.map(x => x.url.startsWith("about:") ? undefined : x.id).filter(x => x);
+		browser.action.setPopup({ popup: "/popup.html" });
+		browser.action.openPopup();
+		setTimeout(() => browser.action.setPopup({ popup: "" }), 750);
 
-		browser.tabs.discard(tabIds).then(async () => {
+	} else {
 
-			let notifyId = `octu-${Date.now() * Math.random()}`;
+		getDiscardableTabIds().then(tabIds => {
+			browser.tabs.discard(tabIds).then(async () => {
 
-			browser.notifications.create(notifyId, {
-				type: "basic",
-				title: "One-Click Tabs Unloader",
-				eventTime: Date.now(),
-				message: tabIds.length === 0 ? "Nothing to unload" : `${tabIds.length} tab${(tabIds.length>1 ? "s" : "")} unloaded`,
+				const notifyId = `octu-${Date.now() * Math.random()}`;
+
+				browser.notifications.create(notifyId, {
+					type: "basic",
+					title: "One-Click Tabs Unloader",
+					eventTime: Date.now(),
+					message: tabIds.length === 0 ? "Nothing to unload" : `${tabIds.length} tab${(tabIds.length>1 ? "s" : "")} unloaded`,
+				});
+				setTimeout(() => browser.notifications.clear(notifyId), 5000);
+
 			});
-			setTimeout(() => browser.notifications.clear(notifyId), 5000);
-
-		});
-	}).catch((e) => console.log("[One-ClickTabsUnloader]", e));
+		}).catch((e) => console.log("[One-ClickTabsUnloader]", e));
+	}
 });
