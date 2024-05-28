@@ -11,6 +11,7 @@
 	"description": "Unload all discardable tabs in one-click.",
 	"author": "arielg",
 	"permissions": [
+		"storage",
 		"tabs",
 		"notifications"
 	],
@@ -32,5 +33,9 @@
 			"/shared.js",
 			"/background.js"
 		]
+	},
+	"options_ui": {
+		"open_in_tab": false,
+		"page": "preferences.html"
 	}
 }

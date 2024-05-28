@@ -1,0 +1,124 @@
+@namespace url("http://www.w3.org/1999/xhtml");
+
+:root {
+	font-size: 12px;
+	user-select: none;
+	-moz-user-select: none;
+	cursor: default;
+
+	--height-preference: 48px;
+	--color-control-focused: rgb(10, 133, 255);
+
+	--color-control-accent: rgb(0, 96, 223);
+	--background-color-input: rgb(121, 121, 121);
+
+	/*******************light theme colors*******************/
+	--background-color-values-body: 255, 255, 255;
+
+	--foreground-color: rgb(0, 0, 0);
+	--background-color-body: transparent;
+	--background-color-select-control: transparent;
+	--background-color-input-control: rgb(255, 255, 255);
+	--foreground-color-disabled-control: rgb(169, 169, 169);
+	--background-color-disabled-control: rgb(211, 211, 211);
+	--color-preference-hover: rgb(242, 242, 242);
+}
+
+@media (prefers-color-scheme: dark) {
+
+	:root {
+		/********************dark theme colors*******************/
+		--background-color-values-body: 35, 34, 43;
+
+		--foreground-color: rgb(249, 249, 250);
+		--background-color-body: rgb(var(--background-color-values-body));
+		--background-color-select-control: rgb(50, 50, 54);
+		--background-color-input-control: var(--background-color-select-control);
+		--foreground-color-disabled-control: rgb(127, 127, 127);
+		--background-color-disabled-control: rgb(72, 72, 72);
+		--color-preference-hover: rgb(52, 52, 55);
+	}
+}
+
+body {
+	box-sizing: border-box;
+	overflow-x: hidden;
+	margin: 0 0 calc(100vh - 140px);	/* 245px - Manually measured height from the top of #prefBlockMiscellaneous to the buttom of .mainContent. Minus 100px for safety margin. */
+	color: var(--foreground-color);
+	background-color: var(--background-color-body);
+	font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+	font-size: 1.273rem;
+	font-weight: normal;
+	line-height: 21px;
+	white-space: nowrap;
+}
+
+body * {
+	box-sizing: border-box;
+}
+
+.preference {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 9px 3px;
+	height: var(--height-preference);
+	min-height: var(--height-preference);
+	max-height: var(--height-preference);
+}
+.preference:hover {
+	background-color: var(--color-preference-hover);
+}
+
+/******************************************************************/
+/**************************** CONTROLS ****************************/
+/******************************************************************/
+input {
+	color: var(--foreground-color);
+	background-color: var(--background-color-input-control);
+}
+
+input[type="checkbox"] {
+	--button-width: 36px;
+	--button-height: 18px;
+	--dot-margin: 4px;
+	--dot-size: calc(var(--button-height) - 2*var(--dot-margin));
+	--dot-transform-x: calc(var(--button-width) - 2*var(--dot-margin) - var(--dot-size));
+
+	-moz-appearance: none;
+	appearance: none;
+	padding: 0;
+	margin: 2px 0;
+	outline: none;
+	box-sizing: border-box;
+	width: var(--button-width);
+	height: var(--button-height);
+	border-radius: calc(var(--button-height) / 2);
+	background-color: var(--background-color-input);
+}
+input[type="checkbox"]:checked {
+	background-color: var(--color-control-accent);
+}
+input[type="checkbox"]:disabled {
+	background-color: var(--background-color-disabled-control);
+}
+input[type="checkbox"]:focus {
+	box-shadow: 0 0 2.5px 2px var(--color-control-focused);
+}
+
+input[type="checkbox"]::before {
+	display: block;
+	content: "";
+	background-color: #ffffff;
+	height: var(--dot-size);
+	width: var(--dot-size);
+	margin: var(--dot-margin);
+	border-radius: 50%;
+	transition: transform 100ms;
+}
+input[type="checkbox"]:checked::before {
+	transform: translateX(var(--dot-transform-x));
+}
+input[type="checkbox"]:disabled::before {
+	background-color: var(--foreground-color-disabled-control);
+}
