@@ -7,7 +7,7 @@
 		}
 	},
 	"name": "One-Click Tabs Unloader",
-	"version": "1.2",
+	"version": "1.3",
 	"description": "Unload all discardable tabs in one-click.",
 	"author": "arielg",
 	"permissions": [
